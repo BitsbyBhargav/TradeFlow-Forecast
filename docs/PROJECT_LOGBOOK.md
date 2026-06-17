@@ -128,3 +128,71 @@ Confirmed that time-series variations (monsoon dips, Q4 surges) and operational 
 Pushed the finalized raw data layer, updated notebooks, and initial file layout to the GitHub repository (tradeflow-forecast).
 
 
+## SESSION 005 — June 17, 2026
+Project: TradeFlow Forecast
+Phase: 1 — Data Ingestion & Relational
+       Architecture
+
+OBJECTIVE
+Design and execute relational schema for
+daily port cargo data in MS SQL Server.
+
+WHAT WAS DONE
+- Created database: TradeFlow
+- Created table: daily_port_cargo
+  (11 columns matching source CSV)
+- Applied appropriate data types:
+  SMALLINT (Year), TINYINT (Month/Day),
+  DECIMAL(10,2) for volume fields,
+  DECIMAL(5,2) for turnaround days
+- Applied composite primary key:
+  (Record_Date, Port_Region, Cargo_Type)
+- Verified schema via
+  INFORMATION_SCHEMA.COLUMNS
+
+BLOCKERS
+None
+
+─────────────────────────────────────
+
+## SESSION 006 — June 17, 2026
+Project: TradeFlow Forecast
+Phase: 1 — Data Ingestion & Relational
+       Architecture
+
+OBJECTIVE
+Push synthetic dataset
+(daily_port_cargo_generation.csv) from
+local CSV into SQL Server table via
+Python.
+
+WHAT WAS DONE
+- Wrote Python insert script using
+  pandas + SQLAlchemy to_sql()
+- Loaded daily_port_cargo_generation.csv
+  (3,291 rows, 11 columns)
+- Pushed data into daily_port_cargo
+  table in TradeFlow database
+- Verified row count in SQL Server:
+  3,291 rows confirmed — matches
+  source file exactly
+- Spot-checked sample rows for
+  accuracy
+
+RESULT
+Data successfully loaded and verified.
+SQL Server now holds the complete
+dataset, ready for analytical querying.
+
+KEY DECISIONS
+- Phase 1 completed in a single day
+  (originally planned across Day 1-3)
+  — ahead of schedule
+
+BLOCKERS
+None
+
+
+
+─────────────────────────────────────
+
