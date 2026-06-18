@@ -93,7 +93,7 @@ source sql/02_trend_queries.sql
 
 ## Documentation
 
-- [PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) - Detailed project overview
+- [PROJECT_BRIEF.md](docs/Project_Brief.md) - Detailed project overview
 - [PROJECT_LOGBOOK.md](docs/PROJECT_LOGBOOK.md) - Development progress tracking
 - [INSIGHTS.md](docs/INSIGHTS.md) - Key findings and recommendations
 
@@ -114,5 +114,5 @@ For questions or suggestions, please contact the project team.
 
 ---
 
-**Last Updated**: [Date]
+**Last Updated**: 18/06/2026
 **Project Status**: In Development
