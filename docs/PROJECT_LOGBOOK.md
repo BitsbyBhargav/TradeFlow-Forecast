@@ -266,10 +266,40 @@ value range. Always sanity-check
 unexpected zeros before trusting
 them.
 
-NEXT SESSION (011)
-- Tier 3: Advanced (Q18-24) —
-  subqueries, CASE, PARTITION BY,
-  CTE ranking
-- Tier 4: Business decision queries
-  (Q25-30)
+SESSION 011 — June 19, 2026
+Project: TradeFlow Forecast
+Phase: 2 — SQL Trends (Practice, Tier 3)
 
+WHAT WAS DONE
+- Q18: subquery filtering above-average
+  volume days — correct
+- Q19: attempted, built a more complex
+  day-level operational classification
+  using CTE + multi-condition CASE;
+  reinterpreted scope from original
+  question (record-level classification
+  → day-level majority classification).
+  Simpler record-level version
+  identified as the core pattern to
+  also practice (CASE + GROUP BY on
+  same expression)
+- Q20: TOP-N per group via DENSE_RANK()
+  OVER (PARTITION BY Cargo_Type...) —
+  correctly substituted Cargo_Type for
+  Port_Region given single-region
+  dataset; correctly reasoned
+  DENSE_RANK() over RANK() for tie
+  handling
+
+KEY LEARNING
+DENSE_RANK() vs RANK(): DENSE_RANK
+doesn't skip rank numbers after ties,
+RANK() does — matters for "top N"
+queries when duplicate values exist.
+
+NEXT SESSION
+- Tier 3 remainder (Q21, adapted
+  Q22-24) + Tier 4 (adapted Q25-30)
+  — Port_Region references replaced
+  with Cargo_Type/Year/overall-dataset
+  framing
