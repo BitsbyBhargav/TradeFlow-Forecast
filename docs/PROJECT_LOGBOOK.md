@@ -191,8 +191,85 @@ KEY DECISIONS
 
 BLOCKERS
 None
+## SESSION 007 — June 18, 2026
+Project: TradeFlow forecast
+Phase 2: SQL trends + Cloud Edge
 
+Tasks:
+→ Push sql/01_schema_creation.sql,
+  notebooks, docs to GitHub
+→ Fix PROJECT_BRIEF.md data source
+  line (per our earlier correction —
+  "synthetic, derived from patterns
+  observed in Kaggle daily port
+  activity data," not a named
+  download)
+→ Confirm README matches actual
+  repo structure
+→ Logbook: mark Phase 1 COMPLETE
+  (1 day, 2 days ahead of plan)
 
+  ## SESSION 009 — June 18, 2026
+
+Project: TradeFlow Forecast
+Phase: 2 — SQL Trends + Cloud Edge
+
+WHAT WAS DONE
+- Internet/network connectivity 
+  unavailable at site for the day
+- Reviewed Phase 2 SQL query set 
+  (Tier 1-4 practice questions) 
+  conceptually without execution
+- Planned query approach for tomorrow's 
+  session (window functions, YoY 
+  growth, business decision queries)
+
+BLOCKERS
+Internet outage — execution deferred
 
 ─────────────────────────────────────
+
+## SESSION 010 — June 19, 2026
+Project: TradeFlow Forecast
+Phase: 2 — SQL Trends (Practice)
+
+WHAT WAS DONE
+- Completed Tier 1 (8 queries) and
+  Tier 2 (9 queries) of SQL practice
+  set on daily_port_cargo
+- Tier 1: 3/8 correct first attempt,
+  4 logic gaps identified and
+  corrected (missing columns,
+  wrong operators, missing
+  conditions) — pattern: question
+  misreading, not syntax errors
+- Tier 2: 9/9 logically sound
+- Found and fixed a real bug:
+  decimal(10,9) precision overflow
+  suppressing Vessel_Arrival_Count
+  averages to 0 for non-Container
+  cargo types — corrected to
+  decimal(10,2)
+- Discovered rounding-suppression
+  issue in Q14: 2-decimal rounding
+  hid near-zero trade balance
+  differences for Liquid/Dry Bulk
+  cargo; revealed at 5 decimals —
+  attributed to synthetic data
+  generation pattern
+
+KEY LEARNING
+Decimal(precision,scale) choice can
+silently distort output if scale
+doesn't leave room for the actual
+value range. Always sanity-check
+unexpected zeros before trusting
+them.
+
+NEXT SESSION (011)
+- Tier 3: Advanced (Q18-24) —
+  subqueries, CASE, PARTITION BY,
+  CTE ranking
+- Tier 4: Business decision queries
+  (Q25-30)
 
