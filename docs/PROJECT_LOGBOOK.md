@@ -266,7 +266,7 @@ value range. Always sanity-check
 unexpected zeros before trusting
 them.
 
-SESSION 011 — June 19, 2026
+## SESSION 011 — June 19, 2026
 Project: TradeFlow Forecast
 Phase: 2 — SQL Trends (Practice, Tier 3)
 
