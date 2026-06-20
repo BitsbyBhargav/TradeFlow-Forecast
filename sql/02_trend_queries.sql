@@ -201,3 +201,181 @@ FROM RankedCargoDays
 WHERE Volume_Rank <= 10
 ORDER BY Cargo_Type, Volume_Rank ASC;
 
+-- **Q21.** For each row, calculate a `rolling_30day_avg` of `Total_Volume_MMT` using a window function.
+
+SELECT 
+    Record_Date,
+    Cargo_Type,
+    CAST(Total_Volume_MMT AS DECIMAL(10,3)) AS Daily_Volume,
+    -- Calculates moving average of current row + 29 preceding chronological rows
+    CAST(AVG(Total_Volume_MMT) OVER (
+        PARTITION BY Cargo_Type
+        ORDER BY Record_Date ASC
+        ROWS BETWEEN 29 PRECEDING AND CURRENT ROW
+    ) AS DECIMAL(10,3)) AS Rolling_30Day_Avg
+FROM daily_port_cargo
+ORDER BY Cargo_Type, Record_Date;
+
+
+--  **Q22.** Find the percentage contribution of each `Cargo_Type` to the TOTAL `Total_Volume_MMT` across the whole dataset.
+
+SELECT 
+    Cargo_Type,
+    CAST(SUM(Total_Volume_MMT) AS DECIMAL(12,3)) AS Category_Total_Volume,
+    -- Divides category sum by the universal sum of all records combined
+    CAST((SUM(Total_Volume_MMT) / SUM(SUM(Total_Volume_MMT)) OVER()) * 100 AS DECIMAL(5,2)) AS Percentage_Contribution
+FROM daily_port_cargo
+GROUP BY Cargo_Type;
+
+
+--   **Q23.** Using a CTE, rank each `Cargo_Type` by total volume, and show only the rank alongside the cargo type and volume.
+
+WITH CargoVolumeSummaries AS (
+    SELECT 
+        Cargo_Type,
+        SUM(Total_Volume_MMT) AS Aggregate_Volume
+    FROM daily_port_cargo
+    GROUP BY Cargo_Type
+)
+SELECT 
+    RANK() OVER (ORDER BY Aggregate_Volume DESC) AS Volume_Rank,
+    Cargo_Type,
+    CAST(Aggregate_Volume AS DECIMAL(12,3)) AS Total_Volume_MMT
+FROM CargoVolumeSummaries;
+
+--  **Q24.** Find days where `Vessel_Arrival_Count` is in the TOP 5% of all values — subquery using `PERCENTILE_CONT` or a percentile cutoff approach.
+
+WITH VesselPercentiles AS (
+    SELECT 
+        Record_Date,
+        Cargo_Type,
+        Vessel_Arrival_Count,
+        -- Computes relative standing (0.0 to 1.0). Top 5% means ranking >= 0.95
+        PERCENT_RANK() OVER (ORDER BY Vessel_Arrival_Count ASC) AS Trailing_Percentile
+    FROM daily_port_cargo
+)
+SELECT 
+    Record_Date,
+    Cargo_Type,
+    Vessel_Arrival_Count,
+    CAST(Trailing_Percentile * 100 AS DECIMAL(5,2)) AS Percentile_Rank
+FROM VesselPercentiles
+WHERE Trailing_Percentile >= 0.95
+ORDER BY Vessel_Arrival_Count DESC, Record_Date ASC;
+
+--  **Q25.** Which month, historically, has the highest average daily volume? Find the single month (across all years) with highest average `Total_Volume_MMT`
+
+SELECT TOP 1
+    MONTH(Record_Date) AS Operational_Month,
+    CAST(AVG(Total_Volume_MMT) AS DECIMAL(10,3)) AS Peak_Avg_Daily_Volume
+FROM daily_port_cargo
+GROUP BY MONTH(Record_Date)
+ORDER BY Peak_Avg_Daily_Volume DESC;
+
+--  **Q26.** Is turnaround time getting worse or better over time? Find average `Avg_Berth_Turnaround_Days` per `Year`, compare Year over Year.
+
+WITH YearlyTurnaroundMetrics AS (
+    SELECT 
+        YEAR(Record_Date) AS Operational_Year,
+        AVG(Avg_Berth_Turnaround_Days) AS Avg_Turnaround_Days
+    FROM daily_port_cargo
+    GROUP BY YEAR(Record_Date)
+)
+SELECT 
+    Operational_Year,
+    CAST(Avg_Turnaround_Days AS DECIMAL(5,2)) AS Current_Year_Avg,
+    CAST(LAG(Avg_Turnaround_Days, 1) OVER (ORDER BY Operational_Year ASC) AS DECIMAL(5,2)) AS Previous_Year_Avg,
+    -- Positive variance means wait times are increasing (getting worse)
+    CAST((Avg_Turnaround_Days - LAG(Avg_Turnaround_Days, 1) OVER (ORDER BY Operational_Year ASC)) AS DECIMAL(5,2)) AS YoY_Variance
+FROM YearlyTurnaroundMetrics;
+
+
+--  **Q27.** Which `Cargo_Type` should get priority crane/resource investment? Find cargo types where `AVG(Total_Volume_MMT)` is high AND `AVG(Avg_Berth_Turnaround_Days)` is also high simultaneously.
+
+WITH GlobalTerminalBaselines AS (
+    SELECT 
+        AVG(Total_Volume_MMT) AS Global_Avg_Volume,
+        AVG(Avg_Berth_Turnaround_Days) AS Global_Avg_Turnaround
+    FROM daily_port_cargo
+)
+SELECT 
+    d.Cargo_Type,
+    CAST(AVG(d.Total_Volume_MMT) AS DECIMAL(10,3)) AS Category_Avg_Volume,
+    CAST(AVG(d.Avg_Berth_Turnaround_Days) AS DECIMAL(5,2)) AS Category_Avg_Turnaround
+FROM daily_port_cargo d
+CROSS JOIN GlobalTerminalBaselines b
+GROUP BY d.Cargo_Type, b.Global_Avg_Volume, b.Global_Avg_Turnaround
+-- Isolate categories scoring higher than the overall baseline averages
+HAVING AVG(d.Total_Volume_MMT) >= b.Global_Avg_Volume 
+   AND AVG(d.Avg_Berth_Turnaround_Days) >= b.Global_Avg_Turnaround;
+
+
+--  **Q28.** Are we import-heavy or export-heavy overall, and is this changing? Find total Import vs Export volume by `Year`, and the ratio between them.
+
+SELECT 
+    YEAR(Record_Date) AS Operational_Year,
+    CAST(SUM(Import_Volume_MMT) AS DECIMAL(12,3)) AS Total_Imports,
+    CAST(SUM(Export_Volume_MMT) AS DECIMAL(12,3)) AS Total_Exports,
+    -- Ratio > 1.0 means Import-Heavy; Ratio < 1.0 means Export-Heavy
+    CAST(SUM(Import_Volume_MMT) / NULLIF(SUM(Export_Volume_MMT), 0) AS DECIMAL(5,2)) AS Import_Export_Ratio
+FROM daily_port_cargo
+GROUP BY YEAR(Record_Date)
+ORDER BY Operational_Year ASC;
+
+
+--  **Q29.** What's our realistic monthly capacity ceiling? Find the 95th percentile of monthly `Total_Volume_MMT`.
+
+WITH MonthlyAggregatedVolumes AS (
+    SELECT 
+        YEAR(Record_Date) AS Clear_Year,
+        MONTH(Record_Date) AS Clear_Month,
+        SUM(Total_Volume_MMT) AS Monthly_Total
+    FROM daily_port_cargo
+    GROUP BY YEAR(Record_Date), MONTH(Record_Date)
+)
+SELECT DISTINCT
+    PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY Monthly_Total ASC) OVER() AS Realistic_Capacity_Ceiling_MMT
+FROM MonthlyAggregatedVolumes;
+
+--  **Q30.** If next month matches last year's same month plus average YoY growth, what volume should we expect? Combine Session 008's YoY query with current month's last-year value to project forward.
+
+WITH MonthlyHistory AS (
+    SELECT 
+        YEAR(Record_Date) AS Op_Year,
+        MONTH(Record_Date) AS Op_Month,
+        SUM(Total_Volume_MMT) AS Monthly_Volume
+    FROM daily_port_cargo
+    GROUP BY YEAR(Record_Date), MONTH(Record_Date)
+),
+YoYGrowthCalculations AS (
+    SELECT 
+        h1.Op_Year,
+        h1.Op_Month,
+        h1.Monthly_Volume AS Current_Vol,
+        h2.Monthly_Volume AS Prev_Year_Vol,
+        (h1.Monthly_Volume - h2.Monthly_Volume) AS Absolute_YoY_Growth
+    FROM MonthlyHistory h1
+    -- Self-join to line up the exact same month from the previous year
+    LEFT JOIN MonthlyHistory h2 ON h1.Op_Month = h2.Op_Month AND h1.Op_Year = h2.Op_Year + 1
+),
+BaselineGrowthTrend AS (
+    SELECT AVG(Absolute_YoY_Growth) AS Avg_YoY_Step_Size
+    FROM YoYGrowthCalculations
+    WHERE Absolute_YoY_Growth IS NOT NULL
+),
+LatestHistoricalBaseline AS (
+    -- Isolates the single most recent matching month profile in the database
+    SELECT TOP 1 
+        Op_Month, 
+        Monthly_Volume AS Last_Known_Volume
+    FROM MonthlyHistory
+    ORDER BY Op_Year DESC, Op_Month DESC
+)
+SELECT 
+    l.Op_Month AS Target_Forecast_Month,
+    CAST(l.Last_Known_Volume AS DECIMAL(12,3)) AS Last_Year_Base_Volume,
+    CAST(g.Avg_YoY_Step_Size AS DECIMAL(12,3)) AS Historical_Growth_Factor,
+    -- Baseline calculation applying target growth parameters
+    CAST((l.Last_Known_Volume + g.Avg_YoY_Step_Size) AS DECIMAL(12,3)) AS Projected_Month_Volume
+FROM LatestHistoricalBaseline l
+CROSS JOIN BaselineGrowthTrend g;
