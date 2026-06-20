@@ -209,7 +209,28 @@ Tasks:
 → Logbook: mark Phase 1 COMPLETE
   (1 day, 2 days ahead of plan)
 
-  ## SESSION 009 — June 18, 2026
+## SESSION 008 — June 17, 2026
+Project: TradeFlow Forecast
+Phase: 2 — SQL Trends (Initial Plan)
+
+PLANNED
+Three core trend queries: YoY growth
+(LAG window function), 7-day moving
+average, cumulative quarterly volume.
+
+ACTUAL OUTCOME
+Superseded — a comprehensive 30-question
+practice set (Tier 1-4, basic through
+business-decision queries) was adopted
+instead as the primary Phase 2
+execution path, providing broader SQL
+coverage. Original 3 queries to be
+revisited as part of Tier 4 (Q30
+directly extends the YoY growth
+concept).
+
+
+## SESSION 009 — June 18, 2026
 
 Project: TradeFlow Forecast
 Phase: 2 — SQL Trends + Cloud Edge
