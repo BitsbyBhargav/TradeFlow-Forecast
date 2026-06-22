@@ -379,3 +379,77 @@ SELECT
     CAST((l.Last_Known_Volume + g.Avg_YoY_Step_Size) AS DECIMAL(12,3)) AS Projected_Month_Volume
 FROM LatestHistoricalBaseline l
 CROSS JOIN BaselineGrowthTrend g;
+
+
+-- 3 Business Analytical Queries
+
+-- Monthly YoY Growth via LAG()
+
+WITH monthly_totals AS (
+    SELECT 
+        [Year], [Month],
+        SUM(Total_Volume_MMT) AS monthly_volume
+    FROM daily_port_cargo
+    GROUP BY [Year], [Month]
+)
+SELECT 
+    [Year], [Month],
+    CAST(monthly_volume AS DECIMAL(10,3)) 
+        AS monthly_volume,
+    CAST(LAG(monthly_volume, 12) OVER (
+        ORDER BY [Year], [Month]
+    ) AS DECIMAL(10,3)) AS same_month_last_year,
+    CAST(
+        (monthly_volume - LAG(monthly_volume,12) 
+            OVER (ORDER BY [Year],[Month]))
+        / NULLIF(LAG(monthly_volume,12) 
+            OVER (ORDER BY [Year],[Month]),0)
+        * 100
+    AS DECIMAL(5,2)) AS yoy_growth_pct
+FROM monthly_totals
+ORDER BY [Year], [Month];
+
+-- Day Moving average
+
+WITH daily_totals AS (
+    SELECT 
+        Record_Date,
+        SUM(Total_Volume_MMT) AS daily_volume
+    FROM daily_port_cargo
+    GROUP BY Record_Date
+)
+SELECT 
+    Record_Date,
+    CAST(daily_volume AS DECIMAL(10,3)) 
+        AS daily_volume,
+    CAST(AVG(daily_volume) OVER (
+        ORDER BY Record_Date
+        ROWS BETWEEN 6 PRECEDING 
+             AND CURRENT ROW
+    ) AS DECIMAL(10,3)) AS moving_avg_7day
+FROM daily_totals
+ORDER BY Record_Date;
+
+-- Quaterly review 
+
+WITH daily_totals AS (
+    SELECT 
+        Record_Date, [Year],
+        DATEPART(QUARTER, Record_Date) 
+            AS quarter_num,
+        SUM(Total_Volume_MMT) AS daily_volume
+    FROM daily_port_cargo
+    GROUP BY Record_Date, [Year],
+        DATEPART(QUARTER, Record_Date)
+)
+SELECT 
+    Record_Date, [Year], quarter_num,
+    CAST(daily_volume AS DECIMAL(10,3)) 
+        AS daily_volume,
+    CAST(SUM(daily_volume) OVER (
+        PARTITION BY [Year], quarter_num
+        ORDER BY Record_Date
+    ) AS DECIMAL(10,3)) 
+        AS cumulative_quarter_volume
+FROM daily_totals
+ORDER BY Record_Date;
