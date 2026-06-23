@@ -410,7 +410,7 @@ Athena: serverless SQL directly on
 BLOCKERS
 AWS account setup pending completion
 
-## SESSION 014 — June 24, 2026
+## SESSION 014 — June 23, 2026
 Project: TradeFlow Forecast
 Phase: 2 — Cloud Edge (S3 Setup)
 
@@ -440,7 +440,7 @@ NEXT SESSION (015)
 AWS Glue Crawler setup → Athena
 query validation on S3 data
 
-## SESSION 015 — June 24, 2026 (Afternoon)
+## SESSION 015 — June 23, 2026 (Afternoon)
 Project: TradeFlow Forecast
 Phase: 2 — Operational Domain Learning
 
