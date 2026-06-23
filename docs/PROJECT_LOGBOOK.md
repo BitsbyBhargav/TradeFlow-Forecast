@@ -354,3 +354,89 @@ Deliverables Submitted Today:
 sql/02_trend_queries.sql: Pushed the finalized, production-grade scripts for the remaining Tier 3 analytical query blocks (Q21 through Q30).
 
 docs/PROJECT_LOGBOOK.md: Updated and locked in the technical histories for your engineering log entries.
+
+SESSION 012 — June 22, 2026
+Project: TradeFlow Forecast
+Phase: 2 — SQL Trends (Core Queries)
+
+OBJECTIVE
+Execute 3 core analytical trend queries
+planned in Session 008, close out SQL
+analysis layer, push to GitHub.
+
+WHAT WAS DONE
+1. Executed 3 core trend queries in
+   sql/02_trend_queries.sql:
+
+   Query 1 — Monthly YoY Growth
+   → CTE for monthly aggregation
+   → LAG(12) window function for
+     same-month prior year comparison
+   → NULLIF applied for safe division
+   → YoY growth % per month
+
+   Query 2 — 7-Day Moving Average
+   → Daily totals via CTE
+   → AVG() OVER (ROWS BETWEEN 6
+     PRECEDING AND CURRENT ROW)
+   → Smooths daily noise for
+     trend visibility
+
+   Query 3 — Cumulative Quarterly
+   Volume
+   → DATEPART(QUARTER) extraction
+   → SUM() OVER (PARTITION BY Year,
+     quarter_num) running total
+   → Resets each quarter — produces
+     seasonal sawtooth pattern
+
+2. YoY chart screenshot added to
+   assets/ folder
+3. All pushed to GitHub
+
+KEY CONCEPTS APPLIED
+LAG(n) for prior-year comparison,
+NULLIF for division safety, ROWS
+BETWEEN for moving average frame,
+PARTITION BY for resetting cumulative
+totals within sub-periods.
+
+BLOCKERS
+None
+
+SESSION 013 — June 23, 2026
+Project: TradeFlow Forecast
+Phase: 2 — Cloud Edge (Orientation)
+
+OBJECTIVE
+Build foundational AWS cloud mental
+model before hands-on implementation.
+
+WHAT WAS DONE
+- Watched Darshil Parmar AWS S3 +
+  Athena project tutorial
+- Understood core concepts:
+  S3 bucket as cloud storage layer,
+  Glue Crawler for automatic schema
+  mapping, Athena as serverless SQL
+  query engine on top of S3 data
+- AWS free tier account creation
+  initiated / in progress
+
+KEY CONCEPTS UNDERSTOOD
+S3: object storage — files (CSV,
+  Parquet) stored in "buckets"
+  accessible via AWS console or
+  Python (boto3)
+Glue Crawler: scans S3 files and
+  auto-generates a queryable schema
+  (table definition) without manual
+  CREATE TABLE
+Athena: serverless SQL directly on
+  S3 data — no database server
+  needed, pay-per-query model
+  (free tier sufficient for project)
+
+BLOCKERS
+AWS account setup pending completion
+
