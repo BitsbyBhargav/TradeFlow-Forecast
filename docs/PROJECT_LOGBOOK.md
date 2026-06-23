@@ -374,7 +374,7 @@ totals within sub-periods.
 BLOCKERS
 None
 
-##  SESSION 013 — June 23, 2026
+##  SESSION 013 — June 22, 2026
 Project: TradeFlow Forecast
 Phase: 2 — Cloud Edge (Orientation)
 
@@ -410,3 +410,93 @@ Athena: serverless SQL directly on
 BLOCKERS
 AWS account setup pending completion
 
+SESSION 014 — June 24, 2026
+Project: TradeFlow Forecast
+Phase: 2 — Cloud Edge (S3 Setup)
+
+OBJECTIVE
+Create AWS S3 bucket, upload processed
+dataset, verify cloud storage layer.
+
+WHAT WAS DONE
+- AWS free tier account activated
+- S3 bucket created:
+  tradeflow-forecast-data
+  Region: ap-south-1 (Mumbai)
+- Processed dataset uploaded to
+  bucket (clean_cargo_trends.csv)
+- Cloud storage layer confirmed
+  accessible via AWS Console
+
+STATUS
+S3 layer: COMPLETE
+Athena setup: deferred to next session
+
+BLOCKERS
+Afternoon occupied by site activity
+(official port operations exposure)
+
+NEXT SESSION (015)
+AWS Glue Crawler setup → Athena
+query validation on S3 data
+
+SESSION 015 — June 24, 2026 (Afternoon)
+Project: TradeFlow Forecast
+Phase: 2 — Operational Domain Learning
+
+NOTE
+Not a technical coding session —
+officially directed site activity
+organized by the internship department.
+Logged as domain knowledge acquisition
+directly relevant to the project's
+business context.
+
+WHAT WAS DONE
+- Attended crane simulation and port
+  operations walkthrough at Hazira
+  terminal (2.5 hours)
+- Learned operational mechanics of
+  container-lifting cranes (types,
+  load capacity, pricing structure,
+  operational workflow)
+- Understood berth structure:
+  2 active berths at Hazira port
+- Observed container and vessel
+  management protocols — tracking,
+  verification, and zero-missing-cargo
+  security chain
+- Understood how cargo movement at
+  the operational level connects to
+  the data metrics in TradeFlow
+  dataset (vessel arrivals, berth
+  turnaround days, container volume)
+
+KEY DOMAIN CONNECTIONS TO PROJECT
+- "Avg_Berth_Turnaround_Days" column
+  now has real operational context:
+  crane capacity + vessel size +
+  container count all influence this
+  metric directly
+- "Vessel_Arrival_Count" relates to
+  berth scheduling — 2 berths = max
+  2 simultaneous vessel operations
+  at any time
+- Crane pricing knowledge adds a
+  cost dimension to the "high volume
+  + slow turnaround" insight from
+  SQL Q27 — high turnaround cargo
+  types are not just slow, they are
+  actively expensive per hour
+
+UPCOMING
+Vessel and crane boarding scheduled
+in coming days — further operational
+exposure planned
+
+BLOCKERS
+None
+
+NEXT SESSION (016)
+AWS Athena setup — Glue Crawler +
+first cloud SQL query on S3 data
