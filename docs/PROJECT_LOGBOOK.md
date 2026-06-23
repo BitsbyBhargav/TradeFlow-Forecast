@@ -325,37 +325,7 @@ NEXT SESSION
   with Cargo_Type/Year/overall-dataset
   framing
 
-## Session 012 - June 20, 2026
-
-Phase: Phase 2: Relational Architecture & Advanced SQL Analysis
-
-Focus Area: Tier 3 Trend Validation & Multi-Commit Git Synchronization
-
-Tasks Completed Today:
-Finalized Advanced Analytical Matrix (Q21–Q30):
-
-Constructed moving continuous matrices using multi-row bounded window frames (ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) for 30-day trailing averages.
-
-Engineered composite global contribution queries mixing aggregation with unpartitioned window functions (SUM(SUM()) OVER()) to calculate historical commodity market share percentages.
-
-Implemented custom statistical data-slicing using continuous distribution percentiles (PERCENT_RANK() and PERCENTILE_CONT(0.95)) to isolate operational capacity ceilings and eliminate peak traffic anomalies.
-
-Developed a forward-looking linear predictive projection script combining self-joins, annualized growth steps, and temporal baseline comparisons to project future operational monthly port volumes.
-
-Resolved Git Upstream Branch Divergence:
-
-Debugged a [rejected] main -> main (fetch first) Git synchronization collision resulting from a combination of local stashes and file-casing modifications (Project_Brief.md).
-
-Safely cleared staging areas using clean stash applies, isolated local cache tracking exceptions (git rm --cached for localized database scripts), and successfully resolved unrelated upstream histories via tracking rebases.
-
-Fully synchronized the local workspace with the remote repository branch (TradeFlow-Forecast.git).
-
-Deliverables Submitted Today:
-sql/02_trend_queries.sql: Pushed the finalized, production-grade scripts for the remaining Tier 3 analytical query blocks (Q21 through Q30).
-
-docs/PROJECT_LOGBOOK.md: Updated and locked in the technical histories for your engineering log entries.
-
-SESSION 012 — June 22, 2026
+## SESSION 012 — June 22, 2026
 Project: TradeFlow Forecast
 Phase: 2 — SQL Trends (Core Queries)
 
@@ -404,7 +374,7 @@ totals within sub-periods.
 BLOCKERS
 None
 
-SESSION 013 — June 23, 2026
+##  SESSION 013 — June 23, 2026
 Project: TradeFlow Forecast
 Phase: 2 — Cloud Edge (Orientation)
 
