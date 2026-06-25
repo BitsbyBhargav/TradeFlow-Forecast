@@ -497,6 +497,25 @@ exposure planned
 BLOCKERS
 None
 
-NEXT SESSION (016)
-AWS Athena setup — Glue Crawler +
-first cloud SQL query on S3 data
+## SESSION 016 — June 24, 2026
+Project: TradeFlow Forecast
+Phase: 2 — Cloud Edge
+
+NOTE
+Morning occupied by blood donation
+camp organized at the internship
+site. Afternoon available but used
+for rest and personal reflection.
+No technical work today.
+
+STATUS
+S3 layer: Complete (from Session 014)
+Athena setup: Carries forward to
+tomorrow, June 26
+
+NEXT SESSION (017)
+AWS Glue Crawler + Athena validation
+queries — first cloud SQL query on
+S3 data
+
+
