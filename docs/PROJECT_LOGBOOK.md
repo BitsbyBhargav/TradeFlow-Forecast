@@ -513,9 +513,21 @@ S3 layer: Complete (from Session 014)
 Athena setup: Carries forward to
 tomorrow, June 26
 
-NEXT SESSION (017)
-AWS Glue Crawler + Athena validation
-queries — first cloud SQL query on
-S3 data
+## SESSION 017 — June 25, 2026
+Project: TradeFlow Forecast
+Phase: 2 — Cloud Edge (Glue & Athena Integration)  
+
+OBJECTIVE:
+Connect AWS Glue Crawler with Athena, catalog the S3 data lake bucket, and verify serverless query execution matching the local database grain.
+
+WHAT WAS DONE:
+- Automated AWS Glue Crawler built and deployed (tradeflowcrawler)Configured data lake crawling targets pointed at AWS S3 source buckets.
+- Successfully ran crawler pipeline to auto-discover schema and register tables inside tradeflowdatabase.
+- CloudWatch logs analyzed (ADD: 1 table change, 1 partition mapping validated)Executed serverless query tests in AWS Athena editor and verified record synchronization -(exact match at 3,291 records)STATUS.
+- AWS Glue Cataloging: COMPLETE
+- Athena Serverless Layer: COMPLETE
+
+Next Session: Execution of cost-optimized analytical query matrix
+BLOCKERS: None. Initial AWS Management Console configuration complexity successfully navigated and resolved before lunch.
 
 

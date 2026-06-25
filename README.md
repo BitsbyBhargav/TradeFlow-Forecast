@@ -34,6 +34,7 @@ tradeflow-forecast/
 - Python 3.9+
 - Jupyter Notebook
 - SQL Server or compatible database
+- AWS Account (Free Tier eligible for S3, Glue, and Athena components)
 - Power BI Desktop (for dashboard)
 - Git
 
@@ -54,15 +55,33 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 3. Install dependencies
 ```bash
 pip install -r requirements.txt
-```
+
+4. Configure AWS CLI Credentials:
+Ensure your machine is authenticated with your AWS environment before spinning up programmatic deployment scripts:
+```bash
+  aws configure
+
+
 
 ### Usage
 
-1. **Generate Data**: Open `notebooks/01_data_generation.ipynb` and run cells to generate synthetic data
-2. **Explore Data**: Run `notebooks/02_eda_trends.ipynb` for exploratory analysis
-3. **Build Models**: Execute `notebooks/03_forecasting_model.ipynb` to train forecasting models
-4. **Evaluate Results**: Review `notebooks/04_evaluation.ipynb` for model performance metrics
-5. **View Dashboard**: Open `dashboard/tradeflow_dashboard.pbix` in Power BI
+- Generate Data: Open notebooks/01_data_generation.ipynb and run cells to generate the standard operational baseline.
+
+- Explore Data: Run notebooks/02_eda_trends.ipynb for exploratory analysis and anomaly evaluation.
+
+- Build Models: Execute notebooks/03_forecasting_model.ipynb to train historical validation forecasting models.
+
+- Evaluate Results: Review notebooks/04_evaluation.ipynb for model performance metrics.
+
+- Automate Infrastructure: Deploy standard infrastructure components utilizing the predefined configuration templates:
+
+Bash
+  aws cloudformation create-stack --stack-name tradeflow-core --template-body file://deployments/infrastructure.yaml
+Trigger Discovery: Run the automated programmatic pipeline to catalog S3 targets into your database structure:
+
+Bash
+  python scripts/run_pipeline.py
+View Dashboard: Open dashboard/tradeflow_dashboard.pbix in Power BI.
 
 ## Database Setup
 
@@ -82,14 +101,37 @@ source sql/02_trend_queries.sql
 - **Phase 3**: Dashboard Creation
 - **Phase 4**: Documentation & Insights
 
+## Project Execution Phases
+
+- **Phase 1**: Data Generation & Exploration 🟩 COMPLETE
+Baseline synthesis, processing data validation checks, and local relational schema prototyping.
+- **Phase 2**: Cloud Edge (Infrastructure & Analytics Modernization) 🟩 COMPLETE
+Migration of local instances to high-availability AWS S3 cloud buckets.
+Integration of serverless AWS Glue data catalog crawlers and distributed schema discoveries.
+Implementation of serverless AWS Athena analytical frameworks targeting 3,291 production lines.
+- **Phase 3**: Model Development & Refinement 🟦 IN PROGRESS
+Time-series model tuning, baseline evaluation, and predictive forecasting.
+Integration of serverless cloud views directly into training nodes.
+- **Phase 4**: BI Dashboard & Strategic Insights Publication ⬜ UPCOMING
+Interactive Power BI report construction mapping performance matrices and data pipelines.
+
+Technical Features
+✅ Data Synthesis Engine: Generates clean, granular multi-variable trade logs.
+✅ Serverless Cloud Transition: Completely migrates physical architectures to scalable object stores via AWS S3.
+✅ Automated Cataloging: Deploys AWS Glue Crawler workflows minimizing metadata schema drift.
+✅ Cost-Optimized Queries: Direct distributed SQL execution utilizing partitioned parameters in AWS Athena.
+✅ Predictive Models: Time-series implementations mapping upcoming import/export volumetric trends.
+✅ Interactive BI Dashboards: Advanced analytical views presenting vessel turnarounds, capacity ratios, and customs variations.
+
 ## Key Features
 
-✅ Synthetic trade flow data generation
-✅ Comprehensive exploratory data analysis
-✅ Multiple forecasting models
-✅ Performance evaluation metrics
-✅ Interactive Power BI dashboard
-✅ Detailed SQL analytics queries
+Technical Features
+✅ Data Synthesis Engine: Generates clean, granular multi-variable trade logs.
+✅ Serverless Cloud Transition: Completely migrates physical architectures to scalable object stores via AWS S3.
+✅ Automated Cataloging: Deploys AWS Glue Crawler workflows minimizing metadata schema drift.
+✅ Cost-Optimized Queries: Direct distributed SQL execution utilizing partitioned parameters in AWS Athena.
+✅ Predictive Models: Time-series implementations mapping upcoming import/export volumetric trends.
+✅ Interactive BI Dashboards: Advanced analytical views presenting vessel turnarounds, capacity ratios, and customs variations
 
 ## Documentation
 
@@ -114,5 +156,8 @@ For questions or suggestions, please contact the project team.
 
 ---
 
-**Last Updated**: 18/06/2026
-**Project Status**: In Development
+- **Last Updated**: 25/06/2026
+- **Project Status: Active Architecture Phase — In Development
+
+
+
