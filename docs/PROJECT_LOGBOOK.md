@@ -530,4 +530,67 @@ WHAT WAS DONE:
 Next Session: Execution of cost-optimized analytical query matrix
 BLOCKERS: None. Initial AWS Management Console configuration complexity successfully navigated and resolved before lunch.
 
+SESSION 018 — June 25, 2026
+Project: TradeFlow Forecast
+Phase: 2 — Cloud Edge (Business Queries)
+
+OBJECTIVE
+Execute business-decision SQL queries
+via AWS Athena on cloud-stored data.
+Validate cloud analytical layer matches
+local SQL findings.
+
+WHAT WAS DONE
+- 6 business queries executed in
+  Athena query editor:
+
+  Query 1: Data verification
+  → SELECT * LIMIT 10 — schema
+    confirmed, columns correctly mapped
+
+  Query 2: Row count verification
+  → COUNT(*) = 3,291 — cloud record
+    count matches local SQL Server
+    exactly
+
+  Query 3: Monthly volume trend
+  → SUM(total_volume_mmt) GROUP BY
+    year, month — seasonal patterns
+    visible, consistent with local
+    trend queries
+
+  Query 4: Peak cargo month
+  → Highest average daily volume
+    month identified
+
+  Query 5: Import vs Export by year
+  → Import/Export ratio calculated
+    per year — trade balance trend
+    confirmed on cloud
+
+  Query 6: Cargo type performance
+  → AVG volume, AVG turnaround,
+    total vessel count per cargo type
+    — matches local SQL Q27 findings
+
+- Query result CSV downloaded from
+  S3 athena-results/ folder
+- Athena result screenshots saved
+  to assets/
+- All assets pushed to GitHub
+
+PHASE 2 STATUS
+All components complete:
+✓ SQL schema + local analysis
+✓ 30-query practice set
+✓ 3 core trend queries
+✓ AWS S3 storage
+✓ Glue Crawler + schema mapping
+✓ Athena serverless SQL (6 queries)
+✓ Query results exported + saved
+✓ LinkedIn milestone post published
+✓ GitHub fully updated
+
+PHASE 2: COMPLETE
+
 
