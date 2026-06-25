@@ -115,13 +115,6 @@ Integration of serverless cloud views directly into training nodes.
 - **Phase 4**: BI Dashboard & Strategic Insights Publication ⬜ UPCOMING
 Interactive Power BI report construction mapping performance matrices and data pipelines.
 
-Technical Features
-✅ Data Synthesis Engine: Generates clean, granular multi-variable trade logs.
-✅ Serverless Cloud Transition: Completely migrates physical architectures to scalable object stores via AWS S3.
-✅ Automated Cataloging: Deploys AWS Glue Crawler workflows minimizing metadata schema drift.
-✅ Cost-Optimized Queries: Direct distributed SQL execution utilizing partitioned parameters in AWS Athena.
-✅ Predictive Models: Time-series implementations mapping upcoming import/export volumetric trends.
-✅ Interactive BI Dashboards: Advanced analytical views presenting vessel turnarounds, capacity ratios, and customs variations.
 
 ## Key Features
 
@@ -152,12 +145,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-For questions or suggestions, please contact the project team.
+For questions or suggestions, please contact the give email officialbhargav22@gmail.com.
 
 ---
 
 - **Last Updated**: 25/06/2026
-- **Project Status: Active Architecture Phase — In Development
+- **Project Status**: Active Architecture Phase — In Development
 
 
 
