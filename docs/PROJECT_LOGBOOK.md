@@ -530,7 +530,7 @@ WHAT WAS DONE:
 Next Session: Execution of cost-optimized analytical query matrix
 BLOCKERS: None. Initial AWS Management Console configuration complexity successfully navigated and resolved before lunch.
 
-SESSION 018 — June 25, 2026
+## SESSION 018 — June 25, 2026
 Project: TradeFlow Forecast
 Phase: 2 — Cloud Edge (Business Queries)
 
@@ -592,5 +592,62 @@ All components complete:
 ✓ GitHub fully updated
 
 PHASE 2: COMPLETE
+
+
+## SESSION 019 — June 26, 2026
+Project: TradeFlow Forecast
+Phase: Internship Domain Exposure
+
+NOTE
+Official site visit organized by
+internship department — operational
+domain learning directly relevant
+to project context.
+
+WHAT WAS DONE
+- Boarded MV Obe Odyssey at Hazira
+  terminal — vessel arrived from
+  China carrying PTA chemical cargo,
+  operated by Syrian crew
+- Met Chief Officer and crew members
+- Observed vessel interior, cargo
+  hold structure, and onboard
+  operations during port stay
+- Interaction with new joinee crew
+  member (similar age, boarded from
+  Singapore 20 days prior) —
+  gained perspective on maritime
+  life and cross-cultural work
+  environments
+- Understood how vessel turnaround
+  works from the crew's side —
+  complements existing data understanding
+  of Avg_Berth_Turnaround_Days metric
+
+KEY DOMAIN CONNECTIONS TO PROJECT
+- PTA chemical cargo = Liquid/Chemical
+  Cargo_Type category in dataset —
+  now have direct operational context
+  for this data field
+- Berth turnaround from crew perspective:
+  documentation, customs clearance,
+  cargo discharge all happen
+  simultaneously — explains why
+  turnaround variance exists in data
+- Two berths confirmed at Hazira —
+  vessel queuing is a real operational
+  constraint, not just a data artifact
+
+PERSONAL NOTE
+Meaningful cross-cultural interaction
+with international crew. Hospitality
+shown during rest period reflects
+maritime professional culture.
+
+BLOCKERS
+Photography restricted on vessel —
+sea-facing and ship-to-ship images
+only captured for personal reference
+
 
 
