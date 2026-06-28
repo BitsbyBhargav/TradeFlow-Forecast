@@ -649,5 +649,78 @@ Photography restricted on vessel —
 sea-facing and ship-to-ship images
 only captured for personal reference
 
+## SESSION 020 — June 27, 2026
+Project: TradeFlow Forecast
+Phase: 3 — EDA Visualizations
+
+OBJECTIVE
+Build EDA notebook with trend and
+seasonality visualizations. Fix
+monthly trend chart (remove partial
+month cliff drop) and seasonality
+chart (readable y-axis values).
+Generate additional operational charts.
+
+WHAT WAS DONE
+1. 02_eda_trends.ipynb built:
+
+   Fix 1 — Monthly Trend (fixed)
+   → Partial June 2026 data removed
+   → Cliff drop eliminated
+   → Marker dots added per month
+   → Every month on x-axis
+   → Result: clean upward trend
+     visible May 2023 → Jan 2026
+     (9 MMT → 18+ MMT)
+
+   Fix 2 — Seasonality (fixed)
+   → Y-axis converted to monthly
+     totals (not tiny daily decimals)
+   → Color coding added:
+     Red = below average months
+     Purple = monsoon dip (Jun-Aug)
+     Blue = above average (peak)
+   → Value labels on each bar
+   → Result: Jun/Jul/Aug dip clearly
+     visible (0.11 MMT), Q4 peak
+     confirmed (Oct-Dec 0.17-0.18)
+
+   Chart 3 — Import vs Export Trend
+   → Import consistently above export
+   → Port confirmed as import-heavy
+   → Both lines follow same seasonal
+     pattern (Q4 surge, monsoon dip)
+
+   Chart 4 — Cargo Type Volume
+   → 3 cargo types tracked monthly
+   → Individual type seasonality
+     patterns visible
+
+   Chart 5 — Vessel Arrival Count
+   → Bar + 3-month moving average
+   → Vessel count stable 90-135
+     range throughout dataset
+
+2. clean_cargo_trends.csv saved to
+   data/processed/
+3. All 5 charts saved to assets/
+4. Notebook + assets pushed to GitHub
+
+KEY FINDINGS FROM EDA
+→ Clear upward volume trend over
+  3-year period (port growth confirmed)
+→ Monsoon dip: Jun-Aug consistently
+  25-30% below annual average
+→ Q4 surge: Oct-Dec 15-20% above
+  annual average
+→ Import consistently exceeds export
+  — import-heavy port profile
+→ Vessel arrivals stable despite
+  volume growth — efficiency improving
+  (more cargo per vessel over time)
+
+BLOCKERS
+None
+
 
 
