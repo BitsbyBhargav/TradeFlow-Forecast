@@ -722,5 +722,52 @@ KEY FINDINGS FROM EDA
 BLOCKERS
 None
 
+## SESSION 021 — June 29, 2026
+Project: TradeFlow Forecast
+Phase: 4 — Power BI Dashboard (Page 1)
 
+OBJECTIVE
+Build Page 1 (Executive Overview) of
+TradeFlow dashboard. Connect data,
+create DAX measures, design KPI cards
+and trend visualizations using dark
+theme professional template.
+
+WHAT WAS DONE
+- Connected Power BI to
+  clean_cargo_trends.csv
+- Created 6 DAX measures: Total
+  Volume, Total Import, Total Export,
+  Total Vessels, Avg Turnaround,
+  Import Export Ratio
+- Built dark theme canvas (#0D1B2A)
+  using BP Oil Pipeline template as
+  structural reference
+- Resolved card visual white
+  background issue (General →
+  Effects → Background toggle)
+- Built 4 KPI cards, donut chart
+  (Volume by Cargo Type), bar chart
+  (Vessel Count by Cargo Type),
+  and yearly volume trend chart
+- Applied teal/yellow/coral color
+  scheme across visuals
+
+FEEDBACK RECEIVED
+Reviewed by [reviewer] — recommended:
+1. Switch to light background theme
+2. Better space utilization —
+   reduce empty/unbalanced areas
+3. Overall polish toward more
+   professional standard
+
+BLOCKERS
+Current version assessed as
+functional but not yet presentation-
+ready for stakeholder audience
+
+NEXT SESSION (023)
+Rebuild Page 1 with light theme,
+improved layout density, and
+professional design references
 
