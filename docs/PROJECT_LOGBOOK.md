@@ -766,8 +766,104 @@ Current version assessed as
 functional but not yet presentation-
 ready for stakeholder audience
 
-NEXT SESSION (023)
-Rebuild Page 1 with light theme,
-improved layout density, and
-professional design references
+## SESSION 022 — June 30, 2026
+Project: TradeFlow Forecast
+Phase: 4 — Power BI Dashboard
+        (Page 1) + Domain Exposure
+
+OBJECTIVE
+Refine Page 1 dashboard based on
+feedback. Document control room
+operational exposure.
+
+WHAT WAS DONE
+
+1. Dashboard Page 1 — v3 rebuild:
+   - Avg Turnaround by Cargo Type
+     rebuilt as proper clustered
+     bar chart — values now correctly
+     visible (Container: 1.51,
+     Liquid: 1.06, Dry Bulk: 1.05)
+   - Light theme retained and refined
+   - KPI card styling improved —
+     consistent shadow, no harsh borders
+   - Color scheme reviewed across
+     all visuals
+
+2. Control Room visit —
+   Hazira terminal operations centre:
+   - Observed live port management
+     system integrating vessel
+     tracking, berth allocation,
+     cargo loading/unloading status
+   - CCTV surveillance network:
+     cargo zones, truck lanes,
+     employee movement — all
+     integrated into single
+     operational interface
+   - Truck allocation system: real-
+     time assignment of trucks to
+     specific cargo type and berth
+   - Complete port operational flow
+     managed from one centralized
+     dashboard — direct conceptual
+     parallel to TradeFlow's
+     analytical layer
+
+KEY DOMAIN CONNECTION
+The control room IS the operational
+version of what TradeFlow models
+analytically. Vessel count → berth
+allocation → cargo assignment →
+truck dispatch: each step tracked
+live. TradeFlow provides the
+PREDICTIVE intelligence layer
+on top of this operational system.
+
+BLOCKERS
+2026 purple line crash to zero at
+month 6 still present — filter
+fix needed next session
+
+─────────────────────────────────
+
+## SESSION 023 — July 1, 2026
+Project: TradeFlow Forecast
+Phase: 4 — Dashboard Refinement
+        (Remote Work Day)
+
+OBJECTIVE
+Continue dashboard improvements,
+push trial versions to GitHub assets.
+
+WHAT WAS DONE
+- Reviewed and studied professional
+  Power BI dashboard design
+  references via video tutorial
+- Identified remaining fixes for
+  Page 1:
+  → 2026 line crash filter to apply
+  → Diagonal streak artifact to remove
+  → Chart title font standardization
+  → Dry Bulk bar color (black → grey
+    or muted tone — harsh on light bg)
+  → Back arrow button — assign
+    navigation action or remove
+- Dashboard screenshot(s) pushed
+  to assets/ as trial/progress
+  versions for version tracking
+- .pbix file pushed to GitHub
+
+BLOCKERS
+Some visual inconsistencies remain —
+Page 1 finalization carries into
+next session
+
+## NEXT SESSION (024)
+→ Apply all remaining Page 1 fixes
+→ Build Page 2: Volume & Trend
+   Analysis
+→ Build Page 3: Operational
+   Intelligence
+→ Begin forecasting model prep
 
