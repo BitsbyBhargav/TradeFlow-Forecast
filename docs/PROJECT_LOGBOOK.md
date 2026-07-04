@@ -910,4 +910,85 @@ Page 3: Planned (Trend &
 BLOCKERS
 None 
 
+## SESSION 025 — July 4, 2026
+Project: TradeFlow Forecast
+Phase: 4 — Power BI Dashboard
+
+OBJECTIVE
+Build Pages 2-3, add cover page
+and navigation structure.
+
+WHAT WAS DONE
+- Cover page built: dark navy,
+  project title, 3 navigation
+  buttons (Executive Overview /
+  Cargo Type Analysis /
+  Operational Insights)
+- Page 2 (Cargo Segment Efficiency):
+  3 cargo KPI cards, monthly trend
+  by cargo type (3 colored lines),
+  turnaround bar chart (cargo-
+  specific colors applied),
+  performance summary table with
+  conditional formatting
+  (Container 1.51 — pink highlight),
+  volume share donut chart
+- Page 3 (Seasonal & YoY Growth):
+  seasonality bar chart (monsoon
+  dip red, Q4 peak blue),
+  YoY growth table, Import vs
+  Export area chart, Key
+  Operational Findings text box
+
+BLOCKERS
+- 2026 partial year data causing
+  line crash on trend charts —
+  resolved via visual-level Year
+  filter (2026 excluded)
+- Black bars on turnaround chart
+  not cargo-specific — resolved
+  via manual data color assignment
+- YoY table showing -56.05% for
+  2026 — resolved by filtering
+  2026 from table
+- Card white background persisting
+  — resolved via General →
+  Effects → Background toggle
+
+─────────────────────────────────
+
+## SESSION 026 — July 4, 2026
+Project: TradeFlow Forecast
+Phase: 4 — Dashboard Final Polish
+
+WHAT WAS DONE
+- Cover page buttons filled with
+  #00B4D8, white text — now
+  visually clickable
+- Diagonal watermark identified
+  as campus wallpaper background
+  image — intentional, retained
+- Performance summary table added
+  to Page 2 (was missing from
+  earlier version)
+- 2026 removed from YoY Growth %
+  table on Page 3
+- All 3 analytical pages reviewed
+  against BI analyst standard:
+  final rating 8/10 — presentable
+  for IT team and college audience
+- .pbix file saved, screenshots
+  pushed to GitHub assets/
+
+FINAL DASHBOARD STATUS
+Cover Page:    Complete ✓
+Page 1:        Complete ✓
+Page 2:        Complete ✓
+Page 3:        Complete ✓
+Navigation:    Complete ✓
+Dashboard:     DONE
+
+BLOCKERS
+None remaining
+
 
