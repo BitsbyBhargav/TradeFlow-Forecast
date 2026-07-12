@@ -1006,3 +1006,62 @@ notebooks, evaluation outputs, and all execution screenshots inside the /assets 
   ModuleNotFoundError: No module named 'prophet': Resolved by forcing Python to fetch the compilation package inline via the active runtime manager.Pathspec / Spaced Filename Errors: Bypassed individual tracking issues caused by whitespace characters in strings by quoting explicit targets ("dashboard/TradeFlow Forecast BI Dashboard.pbix").
 
    4. CURRENT STATUS: PHASE 5 COMPLETE — The entire project architecture (Database SQL $\rightarrow$ Power BI Portal $\rightarrow$ Prophet Predictive ML Scripting) is 100% finished and pushed to production on GitHub main.
+
+
+SESSION 028 — July 8-10, 2026
+Project: TradeFlow Forecast
+Phase: 3 — ML Forecasting Model
+       + Evaluation
+
+WHAT WAS DONE
+
+1. Prophet forecasting model built
+   (03_forecasting_model.ipynb):
+   - Monthly aggregation prepared
+   - Prophet configured: yearly
+     seasonality ON, multiplicative
+     mode, changepoint_prior=0.05
+   - Model trained on full dataset
+   - 3-month forecast generated
+     (Jun-Aug 2026)
+   - Components chart confirmed:
+     upward trend + seasonal pattern
+     matching EDA findings exactly
+
+2. Model evaluation completed
+   (04_evaluation.ipynb):
+   - Train/test split: 24 months
+     train, 12 months test
+   - Backtesting on holdout period
+     Jun 2025 – May 2026
+
+   RESULTS:
+   MAE:  0.554 MMT
+   MAPE: 3.92%  → EXCELLENT
+   RMSE: 0.675 MMT
+   Best:  Oct 2025 (0.19% error)
+   Worst: Nov 2025 (7.51% error)
+
+   Note: CI band narrow (2/12 months
+   captured) — Prophet underestimates
+   uncertainty on short time series.
+   Prediction accuracy remains strong.
+
+3. All outputs saved:
+   - assets/prophet_forecast.png
+   - assets/prophet_components.png
+   - assets/model_evaluation.png
+   - data/processed/forecast_results.csv
+   - data/processed/model_evaluation.csv
+
+KEY FINDING
+Model captures seasonal patterns
+accurately — Jun-Aug dip and Q4
+surge both reflected in predictions.
+Largest errors occur at volume
+turning points (transition months)
+which is expected Prophet behavior.
+
+BLOCKERS
+None
+
